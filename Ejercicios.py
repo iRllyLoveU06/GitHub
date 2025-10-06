@@ -227,16 +227,27 @@ df_equipos["Fecha_Calibración"] = pd.to_datetime(df_equipos["Fecha_Calibración
 df_equipos["Fecha_Mantenimiento"] = pd.to_datetime(df_equipos["Fecha_Mantenimiento"])
 
 
-print("📋 Inventario de Equipos Biomédicos:\n")
+print("Inventario de Equipos Biomédicos:\n")
 print(df_equipos)
 
 
 filtro = df_equipos[df_equipos["Fecha_Mantenimiento"] > "2025-06-30"]
-print("\n🧰 Equipos con mantenimiento en el segundo semestre del 2025:\n")
+print("\nEquipos con mantenimiento en el segundo semestre del 2025:\n")
 print(filtro)
 
+ruta = "C:/Users/luisa/Downloads/Tercer Semestre/Informatica II/GitHub/covid_19_clean_complete.csv"
 
-df_equipos.to_csv("equipos_biomedicos.csv", index=False)
-print("\n💾 Archivo 'equipos_biomedicos.csv' guardado exitosamente.")
+df = pd.read_csv(ruta, parse_dates=["Date"]) 
+
+# Mostrar las primeras filas
+print(df.head())
+
+# Ver información general
+print(df.info())
+
+# Descripción estadística de columnas numéricas
+print(df.describe())
+
+
 
 
