@@ -199,3 +199,44 @@ plt.show()
 
 #EJERCICIOS CLASE 12(pandas)
 
+#primer ejercicio: Crear un sistema que almacene equipos biomédicos , cada
+#equipo tiene información de nombre, marca, ubicación, fecha
+#de calibración ,fecha de mmto ,nombre del proveedor.
+#Para ello implementarlo a partir de un dataframe con la
+#información anterior
+
+
+equipos = {
+    "Nombre": ["Electrocardiógrafo", "Bomba de Infusión", "Desfibrilador", "Incubadora", "Monitor de Signos"],
+    "Marca": ["GE", "Mindray", "Philips", "Dräger", "Nihon Kohden"],
+    "Ubicación": ["UCI", "Pediatría", "Urgencias", "Neonatos", "Hospitalización"],
+    "Fecha_Calibración": [
+        "2025-01-10", "2025-02-18", "2024-12-05", "2025-03-20", "2025-01-30"
+    ],
+    "Fecha_Mantenimiento": [
+        "2025-07-10", "2025-08-18", "2025-06-05", "2025-09-20", "2025-07-30"
+    ],
+    "Proveedor": ["TecnoSalud", "BioMedics", "ElectroCare", "NeoTec", "VitalMed"]
+}
+
+
+df_equipos = pd.DataFrame(equipos)
+
+
+df_equipos["Fecha_Calibración"] = pd.to_datetime(df_equipos["Fecha_Calibración"])
+df_equipos["Fecha_Mantenimiento"] = pd.to_datetime(df_equipos["Fecha_Mantenimiento"])
+
+
+print("📋 Inventario de Equipos Biomédicos:\n")
+print(df_equipos)
+
+
+filtro = df_equipos[df_equipos["Fecha_Mantenimiento"] > "2025-06-30"]
+print("\n🧰 Equipos con mantenimiento en el segundo semestre del 2025:\n")
+print(filtro)
+
+
+df_equipos.to_csv("equipos_biomedicos.csv", index=False)
+print("\n💾 Archivo 'equipos_biomedicos.csv' guardado exitosamente.")
+
+
